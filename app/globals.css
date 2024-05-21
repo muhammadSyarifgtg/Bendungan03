@@ -1,0 +1,46 @@
+/* tailwindcss */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-image: url('https://images.pexels.com/photos/14594593/pexels-photo-14594593.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.lampu-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lampu {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer; /* Add hover effect for accessibility */
+}
+
+.green {
+  background-color: green;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.red {
+  background-color: red;
+}
