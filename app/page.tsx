@@ -30,30 +30,30 @@ export default function Home() {
   }, []);
 
   const getLampuColor = (ketinggian: any) => {
-    if (ketinggian <= 10) {
-      beepSound.stop();
-      return 'green'; // Aman (Green)
-    } else if (ketinggian <= 15) {
-      beepSound.stop();
-      return 'yellow'; // Waspada (Yellow)
-    } else {
-      beepSound.play();
-      return 'red'; // Awas (Red)
-    }
-  };
+  if (ketinggian <= 10) {
+    beepSound.play();
+    return 'red'; // Awas (Red)
+  } else if (ketinggian <= 15) {
+    beepSound.stop();
+    return 'yellow'; // Waspada (Yellow)
+  } else {
+    beepSound.stop();
+    return 'green'; // Aman (Green)
+  }
+};
 
-  const getLampuKeterangan = (ketinggian: any) => {
-    if (ketinggian <= 10) {
-      beepSound.stop();
-      return 'Aman';
-    } else if (ketinggian <= 15) {
-      beepSound.stop();
-      return 'Waspada';
-    } else {
-      beepSound.play();
-      return 'Awas';
-    }
-  };
+const getLampuKeterangan = (ketinggian: any) => {
+  if (ketinggian <= 10) {
+    beepSound.play();
+    return 'Awas';
+  } else if (ketinggian <= 15) {
+    beepSound.stop();
+    return 'Waspada';
+  } else {
+    beepSound.stop();
+    return 'Aman';
+  }
+};
 
 
   return (
