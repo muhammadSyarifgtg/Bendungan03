@@ -1,14 +1,14 @@
 'use client'
 import supabase from "@/lib/supabase";
 import { useEffect, useState } from "react";
-import {Howl} from 'howler';
+import { Howl } from 'howler';
 
 export default function Home() {
   const [data, setData] = useState<any[]>([]);
-  const beepSound = new Howl({ // Create a Howl sound object for the beep effect
-    src: ["/sounds/beep.mp3"], // Replace with the path to your beep sound file
-    volume: 0.3, // Adjust volume as needed
-    loop: true, // Set loop to true for continuous beeping
+  const beepSound = new Howl({
+    src: ["/sounds/beep.mp3"], 
+    volume: 0.3, 
+    loop: true, 
   });
 
   async function fetchData() {
@@ -17,44 +17,44 @@ export default function Home() {
       .select("*")
       .order("id", { ascending: false })
       .limit(1);
-      setData(fetchedData ?? []);
+    setData(fetchedData ?? []);
   }
 
   useEffect(() => {
     fetchData();
-
     const intervalId = setInterval(fetchData, 5000);
-
     return () => clearInterval(intervalId);
-
   }, []);
 
   const getLampuColor = (ketinggian: any) => {
-  if (ketinggian <= 10) {
-    beepSound.play();
-    return 'red'; // Awas (Red)
-  } else if (ketinggian <= 15) {
-    beepSound.stop();
-    return 'yellow'; // Waspada (Yellow)
-  } else {
-    beepSound.stop();
-    return 'green'; // Aman (Green)
-  }
-};
+    if (ketinggian <= 10) {
+      beepSound.play();
+      return 'red'; 
+    } else if (ketinggian <= 15) {
+      beepSound.stop();
+      return 'yellow'; 
+    } else {
+      beepSound.stop();
+      return 'green'; 
+    }
+  };
 
-const getLampuKeterangan = (ketinggian: any) => {
-  if (ketinggian <= 10) {
-    beepSound.play();
-    return 'Awas';
-  } else if (ketinggian <= 15) {
-    beepSound.stop();
-    return 'Waspada';
-  } else {
-    beepSound.stop();
-    return 'Aman';
-  }
-};
+  const getLampuKeterangan = (ketinggian: any) => {
+    if (ketinggian <= 10) {
+      beepSound.play();
+      return 'Awas';
+    } else if (ketinggian <= 15) {
+      beepSound.stop();
+      return 'Waspada';
+    } else {
+      beepSound.stop();
+      return 'Aman';
+    }
+  };
 
+  const getRainKeterangan = (hujan: any) => {
+    return hujan === 0 ? "Hujan" : "Tidak Hujan";
+  };
 
   return (
     <>
@@ -94,7 +94,7 @@ const getLampuKeterangan = (ketinggian: any) => {
                       <p className="text-4xl">{item.hujan}</p>
                     </div>
                     <div>
-                      <p>Null</p>
+                      <p>{getRainKeterangan(item.hujan)}</p>
                     </div>
                   </div>
                 </div>
